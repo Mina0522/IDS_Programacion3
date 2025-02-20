@@ -1,8 +1,11 @@
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.*;
+import java.awt.event.*;
+import javax.swing.*;
 
-public class Vista_Pantalla extends JFrame{
+//implements ActionListener
+public class Vista_Pantalla extends JFrame {
 	
 	private JLabel etiqueta1,etiqueta2;
 	private JTextField campoTexto;
@@ -16,6 +19,7 @@ public class Vista_Pantalla extends JFrame{
 		vistaPricipal();
 		elementos();
 		elementoGrupo();
+		registro();
 		combo();
 	}
 	
@@ -81,7 +85,11 @@ public class Vista_Pantalla extends JFrame{
 		String color3 = "#D783D2";
 		caja.setBackground (Color.decode (color3));
 		lamina.add(caja);
+		
 
+	}
+	
+	private void registro() {
 		//Pantalla de registro
 		JLabel etiqueta1 = new JLabel();
 		String color4 = "#944491";
@@ -119,8 +127,8 @@ public class Vista_Pantalla extends JFrame{
 		
 		this.setVisible(true);
 	}
-	
-	private void elementoGrupo() {
+
+ 	private void elementoGrupo() {
 		
 		etiqueta1 = new JLabel("Color favorito:");
 		etiqueta1.setBounds(560, 240, 120, 25);
@@ -184,7 +192,7 @@ public class Vista_Pantalla extends JFrame{
  
 	}
 	
-	
+
 	public static void main(String[] args) {
 		new Vista_Pantalla();
 	}
