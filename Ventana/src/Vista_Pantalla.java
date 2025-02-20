@@ -1,6 +1,5 @@
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.*;
 import javax.swing.*;
 
 public class Vista_Pantalla extends JFrame{
