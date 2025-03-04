@@ -9,24 +9,27 @@ public class Vista_Pantalla extends JFrame {
 
 	public Vista_Pantalla () {
 		
-		setSize(657, 360);
-		setResizable(false);
-		
+		setTitle("Registro");
+		ImageIcon icono = new ImageIcon((getClass().getResource("icon04.png")));
+		setIconImage(icono.getImage());
 		login ();
 	}
 	
 	private void login () {
 		
 		JPanel panelLogin = new JPanel ();
+		setSize(657, 360);
+		setResizable(false);
 		panelLogin.setBounds(20, 10, 657, 360);
 		panelLogin.setLayout(null);
+		
 		this.getContentPane().add(panelLogin);
 		
 		JLabel etq = new JLabel("Registro");
 		etq.setBounds(150, 10, 300, 80);
 		etq.setHorizontalAlignment(SwingConstants.CENTER);
 		etq.setForeground(Color.black);
-		etq.setFont(new Font("cooper black",Font.PLAIN,30));
+		etq.setFont(new Font("Century Gothic",Font.PLAIN,30));
 		panelLogin.add(etq);
 		
 		//
@@ -37,14 +40,14 @@ public class Vista_Pantalla extends JFrame {
 		JLabel etq2 = new JLabel("Usuario:");
 		panelLogin.setLayout(null);
 		etq2.setForeground(Color.black);
-		etq2.setFont(new Font("cooper black",Font.PLAIN,15));
+		etq2.setFont(new Font("Century Gothic",Font.PLAIN,15));
 		etq2.setBounds(180, 100, 90, 25);
 		panelLogin.add(etq2);
 		
 		JLabel etq3 = new JLabel("Contraseña:");
 		panelLogin.setLayout(null);
 		etq3.setForeground(Color.black);
-		etq3.setFont(new Font("cooper black",Font.PLAIN,15));
+		etq3.setFont(new Font("Century Gothic",Font.PLAIN,15));
 		etq3.setBounds(150, 130, 100, 30);
 		panelLogin.add(etq3);
 		
@@ -106,22 +109,23 @@ public class Vista_Pantalla extends JFrame {
 		etq.setBounds(150, 5, 300, 80);
 		etq.setHorizontalAlignment(SwingConstants.CENTER);
 		etq.setForeground(Color.black);
-		etq.setFont(new Font("cooper black",Font.PLAIN,30));
+		etq.setFont(new Font("Century Gothic",Font.PLAIN,30));
 		panelLogin.add(etq);
+		
 		JLabel etq1 = new JLabel(new ImageIcon("fondoetq1.jpg"));
 		etq1.setBounds(1, 1, 657, 360);
 		
 		JLabel etq2 = new JLabel("Usuario:");
 		panelLogin.setLayout(null);
 		etq2.setForeground(Color.black);
-		etq2.setFont(new Font("cooper black",Font.PLAIN,15));
+		etq2.setFont(new Font("Century Gothic",Font.PLAIN,15));
 		etq2.setBounds(180, 90, 90, 25);
 		panelLogin.add(etq2);
 		
 		JLabel etq3 = new JLabel("Contraseña:");
 		panelLogin.setLayout(null);
 		etq3.setForeground(Color.black);
-		etq3.setFont(new Font("cooper black",Font.PLAIN,15));
+		etq3.setFont(new Font("Century Gothic",Font.PLAIN,15));
 		etq3.setBounds(150, 110, 100, 30);
 		panelLogin.add(etq3);
 		
