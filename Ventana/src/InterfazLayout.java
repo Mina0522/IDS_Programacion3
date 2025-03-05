@@ -12,8 +12,9 @@ public class InterfazLayout {
 	
 	public static void main(String[] args) {
 		
-		JFrame frame = new JFrame("Interes Calculadora");
+		JFrame frame = new JFrame("Calculadora");
 		frame.setSize(300, 320);
+		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -48,9 +49,7 @@ public class InterfazLayout {
 		titleLabel.setForeground(Color.white);
 		panel1.add(titleLabel);
 		
-		// =========================================
 		// = PANEL 2
-		
 		// ==== CAPITAL
 		
 		int y = 50;
@@ -84,17 +83,15 @@ public class InterfazLayout {
 		panel2.add(tasa);
 		
 		JButton calcularBtn = new JButton("Calcular");
-		calcularBtn.setBounds(10, y+100, 90, 25);
+		calcularBtn.setBounds(50, y+110, 90, 25);
 		panel2.add(calcularBtn);
 		
 		JButton cancelarBtn = new JButton("Cancelar");
-		cancelarBtn.setBounds(120, y+100, 90, 25);
+		cancelarBtn.setBounds(150, y+110, 90, 25);
 		panel2.add(cancelarBtn);
 		
 		// PANEL 2
-		// =========================================
-		
-		// =========================================
+
 		// = PANEL 3
 		
 		y = 200;
@@ -116,7 +113,6 @@ public class InterfazLayout {
 		panel3.add(monto);
 		
 		// PANEL 3
-		// =========================================
 		
         mainPanel.add(panel1);
         mainPanel.add(panel2);

@@ -10,7 +10,7 @@ public class Vista_Pantalla extends JFrame {
 	public Vista_Pantalla () {
 		
 		setTitle("Registro");
-		ImageIcon icono = new ImageIcon((getClass().getResource("icon04.png")));
+		ImageIcon icono = new ImageIcon(("icon04.png"));
 		setIconImage(icono.getImage());
 		login ();
 	}

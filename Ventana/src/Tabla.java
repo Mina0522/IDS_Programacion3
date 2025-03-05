@@ -7,6 +7,7 @@ public class Tabla extends JFrame{
 	private JButton boton, boton1;
 	
 	JPanel tabla = new JPanel ();
+	
 	public Tabla() {
 		action();
 		vistaPricipal();
@@ -16,7 +17,7 @@ public class Tabla extends JFrame{
 	private void vistaPricipal() {
 		
 		// Creamos y colocamos una ventana con color.
-		String color = "#D783D2";
+		String color = "#015958";
 		this.setSize(1000, 530);
 		this.setTitle("Ventana");
 		this.setLocationRelativeTo(null);
@@ -30,7 +31,7 @@ public class Tabla extends JFrame{
 		
 		//Pantalla principal
 		JLabel etiqueta = new JLabel();
-		String color2 = "#944491";
+		String color2 = "#023535";
 		etiqueta.setText("Usuarios");
 		etiqueta.setBounds(325, 10, 350, 50);
 		etiqueta.setHorizontalAlignment(SwingConstants.CENTER);
@@ -42,7 +43,7 @@ public class Tabla extends JFrame{
 		tabla.add(etiqueta);
 		
 		JLabel etiqueta1 = new JLabel();
-		String color1 = "#944491";
+		String color1 = "#023535";
 		etiqueta1.setText("Total de usuarios: 100");
 		etiqueta1.setBounds(25, 175, 350, 50);
 		etiqueta1.setHorizontalAlignment(SwingConstants.CENTER);
