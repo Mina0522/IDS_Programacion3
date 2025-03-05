@@ -1,7 +1,16 @@
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 import javax.swing.ImageIcon;
 
 //implements ActionListener
@@ -18,7 +27,8 @@ public class Vista_Pantalla extends JFrame {
 	private void login () {
 		
 		JPanel panelLogin = new JPanel ();
-		setSize(657, 360);
+//		setSize(657, 360);
+		setSize(1000, 750);
 		setResizable(false);
 		panelLogin.setBounds(20, 10, 657, 360);
 		panelLogin.setLayout(null);
@@ -155,6 +165,8 @@ public class Vista_Pantalla extends JFrame {
  		repaint();
  		revalidate();	
  	}
+	
+
 
 	public static void main(String[] args) {
 		
