@@ -23,8 +23,7 @@ public class Graficos extends JFrame{
 	
 	public Graficos () {
 		
-		setTitle("Ventana");
-
+		setTitle("Casa con mascota");
 		login ();
 	}
 	
@@ -34,7 +33,6 @@ private void login () {
 		setSize(700, 650);
 		setResizable(false);
 		panelLogin.setLayout(null);
-		
 		this.getContentPane().add(panelLogin);
 		
 		setVisible(true);
@@ -52,8 +50,7 @@ public void paint (Graphics g) {
 	String RED = "#D80903";
 	String pato = "#F2CB05";
 	String pico = "#D97904";
-	
-	
+
 	super.paint(g);
 	Graphics2D g2 = (Graphics2D) g;
 	
@@ -117,7 +114,6 @@ public void paint (Graphics g) {
   // === EXTRA ===
     
   // == Pato ==
-   
     g2.setColor(Color.decode(pato));
     g2.fillOval(500, 520, 50, 30);
     g2.fillOval(540, 510, 20, 20);
@@ -127,7 +123,6 @@ public void paint (Graphics g) {
     g2.fillOval(555, 515, 5, 5);
 
   // == Nubes == 
-    
     g2.setColor(Color.white);
     g2.fillOval(400, 70, 50, 50);
     g2.fillOval(430, 70, 50, 50);
@@ -175,8 +170,6 @@ public void paint (Graphics g) {
 	int[] ys = {100, 100, 400};
 	
 	g2.drawPolygon(xs, ys, 3);*/
-
-	
 }
 	
 	public static void main(String[] args) {
