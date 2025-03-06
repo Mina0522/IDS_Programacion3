@@ -50,18 +50,19 @@ public void paint (Graphics g) {
 	String verdelimon = "#D2D904";
 	String amarillopollo = "#EEF279";
 	String RED = "#D80903";
-	String gg = "#8C8954";
+	String pato = "#F2CB05";
+	String pico = "#D97904";
 	
 	
 	super.paint(g);
 	Graphics2D g2 = (Graphics2D) g;
 	
-	// == Cielo == 
+// == Cielo == 
 	
 	g2.setColor(Color.decode(blue));
 	g2.fillRect(0, 0, 700, 650);
 	
-	// == Suelo ==
+// == Suelo ==
 	
 	g2.setColor(Color.decode(brown));
 	g2.fillRect(0, 600, getWidth(), 50);
@@ -72,38 +73,61 @@ public void paint (Graphics g) {
 	g2.setColor(Color.decode(green2));
 	g2.fillRect(0, 550, getWidth(), 10);
 	
-	// == Casa ==
+// == Casa ==
 	
-	g2.setColor(Color.decode(verdelimon)); // == Cuerpo de la casa
+// == Cuerpo de la casa
+	g2.setColor(Color.decode(verdelimon));
 	g2.fillRect(90, 245, 270, 320);
 	
-    int[] xTecho = {90, 225, 360}; // Techo
+// == Techo
+    int[] xTecho = {90, 225, 360}; 
     int[] yTecho = {245, 120, 245};
     g2.setColor(Color.decode(brown));
     g2.fillPolygon(xTecho, yTecho, 3);
     
-	g2.setColor(Color.decode(RED)); // Puerta
+ // == Puerta
+	g2.setColor(Color.decode(RED)); 
     g2.fillRect(120, 415, 80, 150);
     g2.setColor(Color.WHITE);
     g2.fillOval(190, 490, 5, 5);
 	
-    g2.setColor(Color.decode(amarillopollo)); // Ventana
+ // == Ventana
+    g2.setColor(Color.decode(amarillopollo)); 
     g2.fillRect(220, 320, 120, 120);
     g2.setColor(Color.decode(RED));
     g2.drawRect(220, 320, 120, 120);
     g2.drawLine(280, 320, 280, 440);
     g2.drawLine(220, 380, 340, 380);
     
-    // === EXTRA
+ // == Cerco
+    g2.setColor(Color.decode(brown)); 
+    g2.fillRect(50, 500, 10, 80);
+    g2.fillRect(90, 500, 10, 80);
+    g2.fillRect(130, 500, 10, 80);
+    g2.fillRect(170, 500, 10, 80);
+    g2.fillRect(210, 500, 10, 80);
+    g2.fillRect(250, 500, 10, 80);
+    g2.fillRect(290, 500, 10, 80);
+    g2.fillRect(330, 500, 10, 80);
+    g2.fillRect(370, 500, 10, 80);
     
-    g2.setColor(Color.yellow);
-    g2.fillOval(400, 520, 50, 30);
-    g2.fillOval(440, 510, 20, 20); 
-    g2.setColor(Color.ORANGE);
-    g2.fillPolygon(new int[]{460, 470, 460}, new int[]{515, 520, 525}, 3);
+    g2.fillRect(50, 520, 350, 10);
+    g2.fillRect(50, 550, 350, 10); 
+    
+  // === EXTRA ===
+    
+  // == Pato ==
+   
+    g2.setColor(Color.decode(pato));
+    g2.fillOval(500, 520, 50, 30);
+    g2.fillOval(540, 510, 20, 20);
+    g2.setColor(Color.decode(pico));
+    g2.fillPolygon(new int[]{560, 570, 560}, new int[]{515, 520, 525}, 3);
     g2.setColor(Color.BLACK);
-    g2.fillOval(455, 515, 5, 5);
+    g2.fillOval(555, 515, 5, 5);
 
+  // == Nubes == 
+    
     g2.setColor(Color.white);
     g2.fillOval(400, 70, 50, 50);
     g2.fillOval(430, 70, 50, 50);
