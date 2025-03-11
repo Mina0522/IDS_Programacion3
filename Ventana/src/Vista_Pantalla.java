@@ -76,20 +76,19 @@ public class Vista_Pantalla extends JFrame {
 		panelLogin.add(boton);
 //		boton.addActionListener(e -> panel1());
 		
-		boolean f1 = false, f2 = false;
-
 		boton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("hola >:I");
 				
-				if(text.getText().equals("") || pass.getPassword().equals("")) {
-					text.setBorder(BorderFactory.createLineBorder(Color.red));
-					pass.setBorder(BorderFactory.createLineBorder(Color.red));
-				}else {
+				if(text.getText().equals("Romi") || pass.getPassword().equals("aguacate")) {
 					text.setBorder(BorderFactory.createLineBorder(Color.green));
 					pass.setBorder(BorderFactory.createLineBorder(Color.green));
+					System.out.println("Bienvenido!!");
+				}else {
+					text.setBorder(BorderFactory.createLineBorder(Color.red));
+					pass.setBorder(BorderFactory.createLineBorder(Color.red));
 				}
 				
 			}});
@@ -183,12 +182,13 @@ public class Vista_Pantalla extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("hola >:I");
 				
-				if(text.getText().equals("") || pass.getPassword().equals("")) {
-					text.setBorder(BorderFactory.createLineBorder(Color.red));
-					pass.setBorder(BorderFactory.createLineBorder(Color.red));
-				}else {
+				if(text.getText().equals("Romi") || pass.getPassword().equals("aguacate")) {
 					text.setBorder(BorderFactory.createLineBorder(Color.green));
 					pass.setBorder(BorderFactory.createLineBorder(Color.green));
+					System.out.println("Bienvenido!!");
+				}else {
+					text.setBorder(BorderFactory.createLineBorder(Color.red));
+					pass.setBorder(BorderFactory.createLineBorder(Color.red));
 				}
 				
 			}});
