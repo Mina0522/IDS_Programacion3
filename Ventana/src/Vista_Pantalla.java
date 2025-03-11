@@ -28,7 +28,7 @@ public class Vista_Pantalla extends JFrame {
 		
 		JPanel panelLogin = new JPanel ();
 //		setSize(657, 360);
-		setSize(1000, 750);
+		setSize(657, 360);
 		setResizable(false);
 		panelLogin.setBounds(20, 10, 657, 360);
 		panelLogin.setLayout(null);
@@ -74,8 +74,27 @@ public class Vista_Pantalla extends JFrame {
 		JButton boton = new JButton("Ingresar");
 		boton.setBounds(250, 260, 120, 25);
 		panelLogin.add(boton);
-		boton.addActionListener(e -> panel1());
+//		boton.addActionListener(e -> panel1());
+		
+		boolean f1 = false, f2 = false;
 
+		boton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("hola >:I");
+				
+				if(text.getText().equals("") || pass.getPassword().equals("")) {
+					text.setBorder(BorderFactory.createLineBorder(Color.red));
+					pass.setBorder(BorderFactory.createLineBorder(Color.red));
+				}else {
+					text.setBorder(BorderFactory.createLineBorder(Color.green));
+					pass.setBorder(BorderFactory.createLineBorder(Color.green));
+				}
+				
+			}});
+		panelLogin.add(boton);
+		panelLogin.revalidate();
 		JCheckBox caja = new JCheckBox("Recordar contraseña.");
 		caja.setBounds(250, 200, 180, 25);
 		panelLogin.add(caja);
@@ -153,17 +172,32 @@ public class Vista_Pantalla extends JFrame {
 		boton.setBounds(250, 260, 120, 25);
 		panelLogin.add(boton);
 //		boton.addActionListener(e -> panel1());
-
+		
 		JCheckBox caja = new JCheckBox("Recordar contraseña.");
 		caja.setBounds(250, 200, 180, 25);
 		panelLogin.add(caja);
-		
+
+		boton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("hola >:I");
+				
+				if(text.getText().equals("") || pass.getPassword().equals("")) {
+					text.setBorder(BorderFactory.createLineBorder(Color.red));
+					pass.setBorder(BorderFactory.createLineBorder(Color.red));
+				}else {
+					text.setBorder(BorderFactory.createLineBorder(Color.green));
+					pass.setBorder(BorderFactory.createLineBorder(Color.green));
+				}
+				
+			}});
 		
 		panelLogin.add(etq1);
 		setVisible(true);
  		setContentPane(panelLogin); 
  		repaint();
- 		revalidate();	
+ 		revalidate();
  	}
 	
 
