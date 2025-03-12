@@ -121,7 +121,8 @@ public class Vista_Pantalla extends JFrame {
 		JMenuItem item = new JMenuItem("Atencion al cliente");
 		JMenuItem item1 = new JMenuItem("Configuracion");
 		JMenuItem item2 = new JMenuItem("Clientes");
-		JMenuItem item3 = new JMenuItem("Reportes");
+		JMenuItem item3 = new JMenuItem("Regresar");
+		item3.addActionListener(e -> login());
 		
 		menu.add(menu1);
 		menu.add(menu2);
@@ -176,10 +177,10 @@ public class Vista_Pantalla extends JFrame {
 		panelLogin.add(boton);
 //		boton.addActionListener(e -> panel1());
 		
-		JButton botonSalir = new JButton("Regresar");
-		botonSalir.setBounds(50, 260, 120, 25);
-		panelLogin.add(botonSalir);
-		botonSalir.addActionListener(e -> login());
+//		JButton botonSalir = new JButton("Regresar");
+//		botonSalir.setBounds(50, 260, 120, 25);
+//		panelLogin.add(botonSalir);
+//		botonSalir.addActionListener(e -> login());
 
 	
 		boton.addActionListener(new ActionListener() {
