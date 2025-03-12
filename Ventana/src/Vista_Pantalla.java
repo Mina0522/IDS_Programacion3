@@ -27,7 +27,6 @@ public class Vista_Pantalla extends JFrame {
 	private void login () {
 		
 		JPanel panelLogin = new JPanel ();
-//		setSize(657, 360);
 		setSize(657, 360);
 		setResizable(false);
 		panelLogin.setBounds(20, 10, 657, 360);
@@ -43,8 +42,8 @@ public class Vista_Pantalla extends JFrame {
 		panelLogin.add(etq);
 		
 		//
-		JLabel etq1 = new JLabel(new ImageIcon("fondoetq1.jpg"));
-		etq1.setBounds(1, 1, 657, 360);
+//		JLabel etq1 = new JLabel(new ImageIcon("fondoetq1.jpg"));
+//		etq1.setBounds(1, 1, 657, 360);
 		
 		
 		JLabel etq2 = new JLabel("Usuario:");
@@ -70,11 +69,15 @@ public class Vista_Pantalla extends JFrame {
 		pass.setBounds(320, 130, 180, 25);
 		pass.setEchoChar('*');
 		panelLogin.add(pass);
+		
+		JCheckBox caja = new JCheckBox("Recordar contraseña.");
+		caja.setBounds(250, 200, 180, 25);
+		panelLogin.add(caja);
 
 		JButton boton = new JButton("Ingresar");
 		boton.setBounds(250, 260, 120, 25);
 		panelLogin.add(boton);
-//		boton.addActionListener(e -> panel1());
+		boton.addActionListener(e -> panel1());
 		
 		boton.addActionListener(new ActionListener() {
 
@@ -84,7 +87,6 @@ public class Vista_Pantalla extends JFrame {
 				
 				if(text.getText().equals("Romi") || pass.getPassword().equals("aguacate")) {
 					text.setBorder(BorderFactory.createLineBorder(Color.green));
-					pass.setBorder(BorderFactory.createLineBorder(Color.green));
 					System.out.println("Bienvenido!!");
 				}else {
 					text.setBorder(BorderFactory.createLineBorder(Color.red));
@@ -92,14 +94,12 @@ public class Vista_Pantalla extends JFrame {
 				}
 				
 			}});
-		panelLogin.add(boton);
+
+		setContentPane(panelLogin);
 		panelLogin.revalidate();
-		JCheckBox caja = new JCheckBox("Recordar contraseña.");
-		caja.setBounds(250, 200, 180, 25);
-		panelLogin.add(caja);
-		
-		panelLogin.add(etq1);
-		
+		panelLogin.repaint();
+		panelLogin.add(boton);
+//		panelLogin.add(etq1);
 		setVisible(true);
 	}
 	
@@ -108,8 +108,8 @@ public class Vista_Pantalla extends JFrame {
  		getContentPane().removeAll();
  		//
 		JPanel panelLogin = new JPanel ();
-		panelLogin.setBounds(1, 1, 657, 360);
 		setSize(657, 360);
+		panelLogin.setBounds(20, 10, 657, 360);
 		panelLogin.setLayout(null);
 		this.getContentPane().add(panelLogin);
 		
@@ -140,8 +140,8 @@ public class Vista_Pantalla extends JFrame {
 		etq.setFont(new Font("Century Gothic",Font.PLAIN,30));
 		panelLogin.add(etq);
 		
-		JLabel etq1 = new JLabel(new ImageIcon("fondoetq1.jpg"));
-		etq1.setBounds(1, 1, 657, 360);
+//		JLabel etq1 = new JLabel(new ImageIcon("fondoetq1.jpg"));
+//		etq1.setBounds(1, 1, 657, 360);
 		
 		JLabel etq2 = new JLabel("Usuario:");
 		panelLogin.setLayout(null);
@@ -166,16 +166,22 @@ public class Vista_Pantalla extends JFrame {
 		pass.setBounds(320, 120, 180, 25);
 		pass.setEchoChar('*');
 		panelLogin.add(pass);
+		
+		JCheckBox caja = new JCheckBox("Recordar contraseña.");
+		caja.setBounds(250, 200, 180, 25);
+		panelLogin.add(caja);
 
 		JButton boton = new JButton("Ingresar");
 		boton.setBounds(250, 260, 120, 25);
 		panelLogin.add(boton);
 //		boton.addActionListener(e -> panel1());
 		
-		JCheckBox caja = new JCheckBox("Recordar contraseña.");
-		caja.setBounds(250, 200, 180, 25);
-		panelLogin.add(caja);
+		JButton botonSalir = new JButton("Regresar");
+		botonSalir.setBounds(50, 260, 120, 25);
+		panelLogin.add(botonSalir);
+		botonSalir.addActionListener(e -> login());
 
+	
 		boton.addActionListener(new ActionListener() {
 
 			@Override
@@ -190,18 +196,15 @@ public class Vista_Pantalla extends JFrame {
 					text.setBorder(BorderFactory.createLineBorder(Color.red));
 					pass.setBorder(BorderFactory.createLineBorder(Color.red));
 				}
-				
 			}});
 		
-		panelLogin.add(etq1);
+//		panelLogin.add(etq1);
 		setVisible(true);
  		setContentPane(panelLogin); 
  		repaint();
  		revalidate();
  	}
 	
-
-
 	public static void main(String[] args) {
 		
 		new Vista_Pantalla();
