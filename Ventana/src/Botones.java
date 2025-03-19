@@ -13,8 +13,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-
-
 public class Botones extends JFrame{
 	
 	public Botones () {
@@ -67,21 +65,21 @@ public class Botones extends JFrame{
 				btn.setBackground(new Color (a,b,c,d));
 				panelLogin.add(btn);
 				
-				
 				btn.addActionListener(new ActionListener() {
 
 					@Override
-					public void actionPerformed(ActionEvent ex) {
+					public void actionPerformed(ActionEvent e) {
 						
-						JOptionPane.showMessageDialog(null, "Color: ");
+						int opcion = JOptionPane.showConfirmDialog(null, "¿Deseas eliminar este boton?", "Eliminando botones", JOptionPane.YES_NO_OPTION);
+						if (opcion == JOptionPane.YES_NO_OPTION) {
+							panelLogin.remove(btn);
+							panelLogin.revalidate();
+							panelLogin.repaint();
+						}
 						
-					}});
-				
-				
+					}});	
 				panelLogin.repaint();
-					
 			}});
-
 		
 		setContentPane(panelLogin);
 		panelLogin.revalidate();
