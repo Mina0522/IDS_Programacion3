@@ -32,6 +32,7 @@ public class GatoRaton extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	private JButton btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9;
 	public GatoRaton() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 514, 476);
@@ -47,157 +48,200 @@ public class GatoRaton extends JFrame {
 		panel.setLayout(null);
 		
 		
-		JButton btnNewButton = new JButton("");
-		btnNewButton.setBounds(0, 0, 167, 149);
-		panel.add(btnNewButton);
-		btnNewButton.addActionListener(new ActionListener() {
+		btn1 = new JButton("");
+		btn1.setBounds(0, 0, 167, 149);
+		panel.add(btn1);
+		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (btnNewButton.getText().equals("")) {
+				if (btn1.getText().equals("")) {
 					if (turno) {
-						btnNewButton.setText("X");
+						btn1.setText("X");
 					} else {
-						btnNewButton.setText("O");
+						btn1.setText("O");
 					}
 					turno = !turno;
+					validar();
 				}
 			}
 		});
 		
-		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.setBounds(166, 0, 167, 149);
-		panel.add(btnNewButton_1);
-		btnNewButton_1.addActionListener(new ActionListener() {
+		btn2 = new JButton("");
+		btn2.setBounds(166, 0, 167, 149);
+		panel.add(btn2);
+		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (btnNewButton_1.getText().equals("")) {
+				if (btn2.getText().equals("")) {
 					if (turno) {
-						btnNewButton_1.setText("X");
+						btn2.setText("X");
 					} else {
-						btnNewButton_1.setText("O");
+						btn2.setText("O");
 					}
 					turno = !turno;
+					validar();
 				}
 			}
 		});
 		
-		JButton btnNewButton_2 = new JButton("");
-		btnNewButton_2.setBounds(331, 0, 167, 149);
-		panel.add(btnNewButton_2);
-		btnNewButton_2.addActionListener(new ActionListener() {
+		btn3 = new JButton("");
+		btn3.setBounds(331, 0, 167, 149);
+		panel.add(btn3);
+		btn3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (btnNewButton_2.getText().equals("")) {
+				if (btn3.getText().equals("")) {
 					if (turno) {
-						btnNewButton_2.setText("X");
+						btn3.setText("X");
 					} else {
-						btnNewButton_2.setText("O");
+						btn3.setText("O");
 					}
 					turno = !turno;
+					validar();
 				}	
 			}
 		});
 		
-		JButton btnNewButton_3 = new JButton("");
-		btnNewButton_3.setBounds(0, 149, 167, 149);
-		panel.add(btnNewButton_3);
-		btnNewButton_3.addActionListener(new ActionListener() {
+		btn4 = new JButton("");
+		btn4.setBounds(0, 149, 167, 149);
+		panel.add(btn4);
+		btn4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (btnNewButton_3.getText().equals("")) {
+				if (btn4.getText().equals("")) {
 					if (turno) {
-						btnNewButton_3.setText("X");
+						btn4.setText("X");
 					} else {
-						btnNewButton_3.setText("O");
+						btn4.setText("O");
 					}
 					turno = !turno;
+					validar();
 				}
 			}
 		});
 		
-		JButton btnNewButton_4 = new JButton("");
-		btnNewButton_4.setBounds(0, 295, 167, 149);
-		panel.add(btnNewButton_4);
-		btnNewButton_4.addActionListener(new ActionListener() {
+		btn5 = new JButton("");
+		btn5.setBounds(0, 295, 167, 149);
+		panel.add(btn5);
+		btn5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				if (btnNewButton_4.getText().equals("")) {
+				if (btn5.getText().equals("")) {
 					if (turno) {
-						btnNewButton_4.setText("X");
+						btn5.setText("X");
 					} else {
-						btnNewButton_4.setText("O");
+						btn5.setText("O");
 					}
 					turno = !turno;
+					validar();
 				}
 			}
 		});
 		
-		JButton btnNewButton_5 = new JButton("");
-		btnNewButton_5.setBounds(166, 149, 167, 149);
-		panel.add(btnNewButton_5);
-		btnNewButton_5.addActionListener(new ActionListener() {
+		btn6 = new JButton("");
+		btn6.setBounds(166, 149, 167, 149);
+		panel.add(btn6);
+		btn6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (btnNewButton_5.getText().equals("")) {
+				if (btn6.getText().equals("")) {
 					if (turno) {
-						btnNewButton_5.setText("X");
+						btn6.setText("X");
 					} else {
-						btnNewButton_5.setText("O");
+						btn6.setText("O");
 					}
 					turno = !turno;
+					validar();
 				}
 			}
 		});
 		
-		JButton btnNewButton_6 = new JButton("");
-		btnNewButton_6.setBounds(331, 149, 167, 149);
-		panel.add(btnNewButton_6);
-		btnNewButton_6.addActionListener(new ActionListener() {
+		btn7 = new JButton("");
+		btn7.setBounds(331, 149, 167, 149);
+		panel.add(btn7);
+		btn7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (btnNewButton_6.getText().equals("")) {
+				if (btn7.getText().equals("")) {
 					if (turno) {
-						btnNewButton_6.setText("X");
+						btn7.setText("X");
 					} else {
-						btnNewButton_6.setText("O");
+						btn7.setText("O");
 					}
 					turno = !turno;
+					validar();
 				}
 			}
 		});
 		
-		JButton btnNewButton_7 = new JButton("");
-		btnNewButton_7.setBounds(166, 295, 167, 149);
-		panel.add(btnNewButton_7);
-		btnNewButton_7.addActionListener(new ActionListener() {
+		btn8 = new JButton("");
+		btn8.setBounds(166, 295, 167, 149);
+		panel.add(btn8);
+		btn8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (btnNewButton_7.getText().equals("")) {
+				if (btn8.getText().equals("")) {
 					if (turno) {
-						btnNewButton_7.setText("X");
+						btn8.setText("X");
 					} else {
-						btnNewButton_7.setText("O");
+						btn8.setText("O");
 					}
 					turno = !turno;
+					validar();
 				}
 			}
 		});
 		
-		JButton btnNewButton_8 = new JButton("");
-		btnNewButton_8.setBounds(331, 295, 167, 149);
-		panel.add(btnNewButton_8);
-		btnNewButton_8.addActionListener(new ActionListener() {
+		btn9 = new JButton("");
+		btn9.setBounds(331, 295, 167, 149);
+		panel.add(btn9);
+		btn9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (btnNewButton_8.getText().equals("")) {
+				if (btn9.getText().equals("")) {
 					if (turno) {
-						btnNewButton_8.setText("X");
+						btn9.setText("X");
 					} else {
-						btnNewButton_8.setText("O");
+						btn9.setText("O");
 					}
 					turno = !turno;
+					validar();
 				}
 			}
 		});
 	}
 	
-	private void validar() {
-
-	}
-
 	private void mostrarGanador(String ganador) {
-	    javax.swing.JOptionPane.showMessageDialog(this, "¡Ganador: " + ganador + "!");
+		
+	    javax.swing.JOptionPane.showMessageDialog(this, "¡GANASTE " + ganador + "!");
+	    
+	}
+	
+	private void validar() {
+		
+		// === Validaciones para las filas === 
+		if(!btn1.getText().equals("") && btn1.getText().equals(btn2.getText()) && btn2.getText().equals(btn3.getText())) {
+			mostrarGanador(btn1.getText());
+			return;
+		}
+		if(!btn4.getText().equals("") && btn4.getText().equals(btn6.getText()) && btn6.getText().equals(btn7.getText())) {
+			mostrarGanador(btn4.getText());
+			return;
+		}
+		if(!btn5.getText().equals("") && btn5.getText().equals(btn8.getText()) && btn8.getText().equals(btn9.getText())) {
+			mostrarGanador(btn5.getText());
+			return;
+		}
+		
+		// === Validaciones para las columnas === 
+		if (!btn1.getText().equals("")  && btn1.getText().equals(btn4.getText()) && btn4.getText().equals(btn5.getText())) {
+			mostrarGanador(btn1.getText());
+		}
+		if (!btn2.getText().equals("")  && btn2.getText().equals(btn6.getText()) && btn6.getText().equals(btn8.getText())) {
+			mostrarGanador(btn2.getText());
+		}
+		if (!btn3.getText().equals("")  && btn3.getText().equals(btn7.getText()) && btn7.getText().equals(btn9.getText())) {
+			mostrarGanador(btn3.getText());
+		}
+		
+		// === Validaciones para las diagonales ===
+		if (!btn1.getText().equals("")  && btn1.getText().equals(btn6.getText()) && btn6.getText().equals(btn9.getText())) {
+			mostrarGanador(btn1.getText());
+		}
+		if (!btn3.getText().equals("")  && btn3.getText().equals(btn6.getText()) && btn6.getText().equals(btn5.getText())) {
+			mostrarGanador(btn1.getText());
 		}
 	}
+}
