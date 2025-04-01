@@ -15,10 +15,9 @@ public class paint extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	public logicaPaint logicaP;
+	public Color colors = Color.BLACK;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -32,10 +31,11 @@ public class paint extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public paint() {
+		logicaP = new logicaPaint();
+		design();
+	}
+	private void design() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 826, 505);
 		contentPane = new JPanel();
@@ -87,64 +87,25 @@ public class paint extends JFrame {
 		panel_1.add(lblOpciones);
 		
 		JButton btnNewButton_2 = new JButton("Lapiz");
-		btnNewButton_2.setBounds(27, 205, 99, 23);
+		btnNewButton_2.setBounds(27, 185, 99, 23);
 		panel_1.add(btnNewButton_2);
-		
-		JButton btnNewButton_3 = new JButton("Borrador");
-		btnNewButton_3.setBounds(27, 171, 99, 23);
-		panel_1.add(btnNewButton_3);
 		
 		JLabel lblColores = new JLabel("Colores");
 		lblColores.setFont(new Font("Yu Gothic Light", Font.BOLD, 20));
 		lblColores.setBounds(10, 270, 78, 32);
 		panel_1.add(lblColores);
 		
-		JSlider slider = new JSlider();
-		slider.setBounds(10, 245, 145, 14);
+		JSlider slider = new JSlider(1, 10, 3);
+		slider.setBounds(10, 369, 145, 14);
 		panel_1.add(slider);
+		slider.addChangeListener(e -> {
+			logicaP.setGrosorPincel(slider.getValue());
+			logicaP.getPaintPanel().repaint();
+		});
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(new Color(0, 0, 0));
-		panel_3.setBounds(10, 303, 17, 14);
-		panel_1.add(panel_3);
-		
-		JPanel panel_3_1 = new JPanel();
-		panel_3_1.setBackground(new Color(255, 255, 255));
-		panel_3_1.setBounds(37, 303, 17, 14);
-		panel_1.add(panel_3_1);
-		
-		JPanel panel_3_2 = new JPanel();
-		panel_3_2.setBackground(new Color(128, 128, 128));
-		panel_3_2.setBounds(64, 303, 17, 14);
-		panel_1.add(panel_3_2);
-		
-		JPanel panel_3_3 = new JPanel();
-		panel_3_3.setBackground(new Color(0, 0, 128));
-		panel_3_3.setBounds(92, 303, 17, 14);
-		panel_1.add(panel_3_3);
-		
-		JPanel panel_3_4 = new JPanel();
-		panel_3_4.setBackground(new Color(255, 0, 0));
-		panel_3_4.setBounds(10, 325, 17, 14);
-		panel_1.add(panel_3_4);
-		
-		JPanel panel_3_5 = new JPanel();
-		panel_3_5.setBackground(new Color(0, 255, 0));
-		panel_3_5.setBounds(37, 325, 17, 14);
-		panel_1.add(panel_3_5);
-		
-		JPanel panel_3_6 = new JPanel();
-		panel_3_6.setBackground(new Color(255, 128, 192));
-		panel_3_6.setBounds(64, 325, 17, 14);
-		panel_1.add(panel_3_6);
-		
-		JPanel panel_3_7 = new JPanel();
-		panel_3_7.setBackground(new Color(255, 128, 0));
-		panel_3_7.setBounds(92, 325, 17, 14);
-		panel_1.add(panel_3_7);
-		
-		JButton btnNewButton_4 = new JButton("Limpiar pantalla");
-		btnNewButton_4.setBounds(10, 360, 145, 23);
+		JButton btnNewButton_4 = new JButton("Limpiar");
+		btnNewButton_4.setBounds(27, 236, 99, 23);
+		btnNewButton_4.addActionListener(e ->logicaP.limpiarD());
 		panel_1.add(btnNewButton_4);
 		
 		JButton btnNewButton_4_1 = new JButton("Guardar");
@@ -156,8 +117,88 @@ public class paint extends JFrame {
 		btnNewButton_4_1.setBounds(10, 394, 145, 23);
 		panel_1.add(btnNewButton_4_1);
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(255, 255, 255));
+		JButton rojo = new JButton("");
+		rojo.setBackground(new Color(255, 0, 0));
+		rojo.setBounds(10, 297, 26, 23);
+		rojo.addActionListener(e -> {
+			if (!colors.equals(Color.RED))
+				colors = Color.RED;
+				logicaP.setColorP(colors);
+		});
+		panel_1.add(rojo);
+		
+		JButton verde = new JButton("");
+		verde.setBackground(new Color(128, 255, 0));
+		verde.setBounds(46, 297, 26, 23);
+		verde.addActionListener(e -> {
+			if (!colors.equals(Color.GREEN))
+				colors = Color.GREEN;
+				logicaP.setColorP(colors);
+		});
+		
+		panel_1.add(verde);
+		
+		JButton azul = new JButton("");
+		azul.setBackground(new Color(0, 0, 255));
+		azul.setBounds(82, 297, 26, 23);
+		azul.addActionListener(e -> {
+			if (!colors.equals(Color.BLUE))
+				colors = Color.BLUE;
+				logicaP.setColorP(colors);
+		});
+		panel_1.add(azul);
+		
+		JButton rosa = new JButton("");
+		rosa.setBackground(new Color(255, 0, 128));
+		rosa.setBounds(118, 297, 26, 23);
+		rosa.addActionListener(e -> {
+			if (!colors.equals(Color.PINK))
+				colors = Color.PINK;
+				logicaP.setColorP(colors);
+		});
+		panel_1.add(rosa);
+		
+		JButton negro = new JButton("");
+		negro.setBackground(new Color(0, 0, 0));
+		negro.setBounds(10, 331, 26, 23);
+		negro.addActionListener(e -> {
+			if (!colors.equals(Color.BLACK))
+				colors = Color.BLACK;
+				logicaP.setColorP(colors);
+		});
+		panel_1.add(negro);
+		
+		JButton blanco = new JButton("");
+		blanco.setBackground(new Color(255, 255, 255));
+		blanco.setBounds(46, 331, 26, 23);
+		blanco.addActionListener(e -> {
+			if (!colors.equals(Color.WHITE))
+				colors = Color.WHITE;
+				logicaP.setColorP(colors);
+		});
+		panel_1.add(blanco);
+		
+		JButton mora = new JButton("");
+		mora.setBackground(new Color(128, 0, 128));
+		mora.setBounds(82, 331, 26, 23);
+		mora.addActionListener(e -> {
+			if (!colors.equals(Color.MAGENTA))
+				colors = Color.MAGENTA;
+				logicaP.setColorP(colors);
+		});
+		panel_1.add(mora);
+		
+		JButton gris = new JButton("");
+		gris.setBackground(new Color(128, 128, 128));
+		gris.setBounds(118, 331, 26, 23);
+		gris.addActionListener(e -> {
+			if (!colors.equals(Color.GRAY))
+				colors = Color.GRAY;
+				logicaP.setColorP(colors);
+		});
+		panel_1.add(gris);
+		
+		JPanel panel_2 = logicaP.getPaintPanel();
 		panel_2.setBounds(185, 21, 615, 421);
 		panel.add(panel_2);
 	}

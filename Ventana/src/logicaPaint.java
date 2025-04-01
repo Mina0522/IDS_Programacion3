@@ -96,13 +96,11 @@ public class logicaPaint implements MouseListener, MouseMotionListener {
     		colorp = c;
     	}
     }
-    
     @Override
     public void mousePressed(MouseEvent e) {
         puntos = new ArrayList<>();
         puntos.add(e.getPoint());
     }
-
     @Override
     public void mouseReleased(MouseEvent e) {
         if (!puntos.isEmpty()) {
@@ -112,7 +110,6 @@ public class logicaPaint implements MouseListener, MouseMotionListener {
             puntos.clear();
         }
     }
-
     @Override
     public void mouseDragged(MouseEvent e) {
         puntos.add(e.getPoint());
