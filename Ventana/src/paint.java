@@ -3,9 +3,12 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -17,7 +20,7 @@ public class paint extends JFrame {
 	private JPanel contentPane;
 	public logicaPaint logicaP;
 	public Color colors = Color.BLACK;
-
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -32,6 +35,9 @@ public class paint extends JFrame {
 	}
 
 	public paint() {
+		setTitle("Paint");
+		ImageIcon icono = new ImageIcon(("iconoP.png"));
+		setIconImage(icono.getImage());
 		logicaP = new logicaPaint();
 		design();
 	}
@@ -61,61 +67,59 @@ public class paint extends JFrame {
 		lblNewLabel.setBounds(10, 11, 78, 32);
 		panel_1.add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("Rectangulo");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton cd = new JButton("Cuadrado");
+		cd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				logicaP.figura_selec = "Cuadrado";
+			}
+		});
+		cd.setBounds(27, 40, 99, 23);
+		panel_1.add(cd);
+		
+		JButton circulo = new JButton("Circulo");
+		circulo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				logicaP.figura_selec = "Circulo";
+			}
+		});
+		circulo.setBounds(27, 74, 99, 23);
+		panel_1.add(circulo);
+		
+		JButton trian = new JButton("Triangulo");
+		trian.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(27, 40, 99, 23);
-		panel_1.add(btnNewButton);
+		trian.setBounds(27, 108, 99, 23);
+		panel_1.add(trian);
 		
-		JButton btnNewButton_1 = new JButton("Circulo");
-		btnNewButton_1.setBounds(27, 74, 99, 23);
-		panel_1.add(btnNewButton_1);
-		
-		JButton btnNewButton_1_1 = new JButton("Triangulo");
-		btnNewButton_1_1.addActionListener(new ActionListener() {
+		JButton linea = new JButton("Linea");
+		linea.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				logicaP.figura_selec = "Lapiz";
 			}
 		});
-		btnNewButton_1_1.setBounds(27, 108, 99, 23);
-		panel_1.add(btnNewButton_1_1);
+		linea.setBounds(27, 142, 99, 23);
+		panel_1.add(linea);
+		
+		JButton pincel = new JButton("Pincel");
+		pincel.setBounds(27, 176, 99, 23);
+		panel_1.add(pincel);
 		
 		JLabel lblOpciones = new JLabel("Opciones");
 		lblOpciones.setFont(new Font("Yu Gothic Light", Font.BOLD, 20));
-		lblOpciones.setBounds(10, 142, 99, 32);
+		lblOpciones.setBounds(10, 205, 99, 32);
 		panel_1.add(lblOpciones);
 		
-		JButton btnNewButton_2 = new JButton("Lapiz");
-		btnNewButton_2.setBounds(27, 185, 99, 23);
-		panel_1.add(btnNewButton_2);
-		
+		JButton limpiar = new JButton("Limpiar");
+		limpiar.setBounds(27, 236, 99, 23);
+		limpiar.addActionListener(e ->logicaP.limpiarD());
+		panel_1.add(limpiar);
+				
 		JLabel lblColores = new JLabel("Colores");
 		lblColores.setFont(new Font("Yu Gothic Light", Font.BOLD, 20));
 		lblColores.setBounds(10, 270, 78, 32);
 		panel_1.add(lblColores);
-		
-		JSlider slider = new JSlider(1, 10, 3);
-		slider.setBounds(10, 369, 145, 14);
-		panel_1.add(slider);
-		slider.addChangeListener(e -> {
-			logicaP.setGrosorPincel(slider.getValue());
-			logicaP.getPaintPanel().repaint();
-		});
-		
-		JButton btnNewButton_4 = new JButton("Limpiar");
-		btnNewButton_4.setBounds(27, 236, 99, 23);
-		btnNewButton_4.addActionListener(e ->logicaP.limpiarD());
-		panel_1.add(btnNewButton_4);
-		
-		JButton btnNewButton_4_1 = new JButton("Guardar");
-		btnNewButton_4_1.setBackground(new Color(80, 160, 160));
-		btnNewButton_4_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton_4_1.setBounds(10, 394, 145, 23);
-		panel_1.add(btnNewButton_4_1);
 		
 		JButton rojo = new JButton("");
 		rojo.setBackground(new Color(255, 0, 0));
@@ -197,6 +201,25 @@ public class paint extends JFrame {
 				logicaP.setColorP(colors);
 		});
 		panel_1.add(gris);
+		
+		JSlider slider = new JSlider(1, 10, 3);
+		slider.setBounds(10, 369, 145, 14);
+		panel_1.add(slider);
+		slider.addChangeListener(e -> {
+			logicaP.setGrosorPincel(slider.getValue());
+			logicaP.getPaintPanel().repaint();
+		});
+		
+		JButton guardar = new JButton("Guardar");
+		guardar.setBackground(new Color(80, 160, 160));
+		guardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		guardar.setBounds(10, 394, 145, 23);
+		panel_1.add(guardar);
+		
+	
 		
 		JPanel panel_2 = logicaP.getPaintPanel();
 		panel_2.setBounds(185, 21, 615, 421);

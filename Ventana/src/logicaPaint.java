@@ -25,11 +25,15 @@ public class logicaPaint implements MouseListener, MouseMotionListener {
 	public PaintPanel panel_2;
 	public int grosorP = 3;
 	public Color colorp = Color.BLACK;
+	public String figura_selec = "";
+	public Point inicio = null;
+	
 	
 	private ArrayList<Point> puntos = new ArrayList<Point>();
 	List<List<Point>> listaDePuntos = new ArrayList<>(); 
-	private List<Integer> trazosG = new ArrayList<>();
-	private List<Color> trazoC = new ArrayList<>();
+	List<Integer> trazosG = new ArrayList<>();
+	List<Color> trazoC = new ArrayList<>();
+	List<Figura> figuras = new ArrayList();
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -48,7 +52,6 @@ public class logicaPaint implements MouseListener, MouseMotionListener {
 		logica();
 		panel_2 = new PaintPanel();
         panel_2.addMouseListener(this);
-        panel_2.addMouseMotionListener(this);
 	}
 
     private void logica() {
@@ -84,6 +87,7 @@ public class logicaPaint implements MouseListener, MouseMotionListener {
     	trazosG.clear();
     	trazoC.clear();
     	puntos.clear();
+    	figuras.clear();
     	panel_2.repaint();
     }
     
@@ -96,6 +100,7 @@ public class logicaPaint implements MouseListener, MouseMotionListener {
     		colorp = c;
     	}
     }
+    
     @Override
     public void mousePressed(MouseEvent e) {
         puntos = new ArrayList<>();
@@ -117,7 +122,25 @@ public class logicaPaint implements MouseListener, MouseMotionListener {
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {}
+    public void mouseClicked(MouseEvent e) {
+		int x = e.getX();
+		int y = e.getY();
+		if(figura_selec.isEmpty()) {
+			return;
+		}else if("Cuadrado".equals(figura_selec)) {
+    		figuras.add(new Figura(x, y, 80, 80, "Cuadrado", colorp, grosorP));
+    	}else if ("Circulo".equals(figura_selec)) {
+    		figuras.add(new Figura(x, y, 80, 80, "Circulo", colorp, grosorP));
+    	}else if ("linea".equals(figura_selec)) {
+    		if(inicio == null) {
+    			inicio = new Point(x, y);
+    		}else {
+    			figuras.add(new Figura(inicio.x, inicio.y, x, y, "Linea", colorp, grosorP));
+    			inicio = null;
+    		}
+    	}
+    	panel_2.repaint();
+    }
     @Override
     public void mouseEntered(MouseEvent e) {}
     @Override
@@ -134,7 +157,20 @@ public class logicaPaint implements MouseListener, MouseMotionListener {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             Graphics2D g2 = (Graphics2D) g;
-                    
+            
+            for(Figura f : figuras) {
+            	g2.setStroke(new BasicStroke(f.grosor));
+            	g2.setColor(f.color);
+            	
+            	if("Cuadrado".equals(f.t)) {
+            		g2.drawRect(f.x, f.y , f.w, f.h);
+            	}else if("Circulo".equals(f.t)) {
+            		g2.drawOval(f.x, f.y , f.w, f.h);
+            	}else if("Linea".equals(f.t)) {
+            		g2.drawLine(f.x, f.y, f.w, f.h);
+            	}
+            }
+            
             for(int i = 0; i < listaDePuntos.size(); i++) {
             	List<Point> trazo = listaDePuntos.get(i);
             	int grosor = trazosG.get(i);
@@ -161,4 +197,24 @@ public class logicaPaint implements MouseListener, MouseMotionListener {
             }
          }
     }
+    
+    class Figura {
+    	public int x,y,w,h;
+		public String t;
+		public Color color;
+        public int grosor;
+    	
+    	public Figura (int x, int y, int w, int h, String t, Color color, int grosor )
+    	{
+    		this.x = x;
+    		this.y = y;
+    		this.w = w;
+    		this.h = h;
+    		this.t = t;
+    		this.color = color;
+    		this.grosor = grosor;
+    	}
+    	
+    }
+    
 }
