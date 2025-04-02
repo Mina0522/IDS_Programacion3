@@ -27,6 +27,8 @@ public class logicaPaint implements MouseListener, MouseMotionListener {
 	public Color colorp = Color.BLACK;
 	public String figura_selec = "";
 	public Point inicio = null;
+	public int borrador;
+	
 	
 	
 	private ArrayList<Point> puntos = new ArrayList<Point>();
@@ -91,6 +93,10 @@ public class logicaPaint implements MouseListener, MouseMotionListener {
     	panel_2.repaint();
     }
     
+    public void borrar() {
+    	
+    }
+    
     public void setGrosorPincel(int grosor) {
     	this.grosorP = grosor;
     }
@@ -136,7 +142,7 @@ public class logicaPaint implements MouseListener, MouseMotionListener {
     			inicio = new Point(x, y);
     		}else {
     			figuras.add(new Figura(inicio.x, inicio.y, x, y, "Linea", colorp, grosorP));
-    			inicio = null;
+    			
     		}
     	}
     	panel_2.repaint();
@@ -162,7 +168,9 @@ public class logicaPaint implements MouseListener, MouseMotionListener {
             	g2.setStroke(new BasicStroke(f.grosor));
             	g2.setColor(f.color);
             	
-            	if("Cuadrado".equals(f.t)) {
+            	if ("Pincel".equals(f.t)) {
+            		g2.drawLine(f.x, f.y, f.x, f.y);
+            	}else if("Cuadrado".equals(f.t)) {
             		g2.drawRect(f.x, f.y , f.w, f.h);
             	}else if("Circulo".equals(f.t)) {
             		g2.drawOval(f.x, f.y , f.w, f.h);
@@ -214,7 +222,5 @@ public class logicaPaint implements MouseListener, MouseMotionListener {
     		this.color = color;
     		this.grosor = grosor;
     	}
-    	
     }
-    
 }
