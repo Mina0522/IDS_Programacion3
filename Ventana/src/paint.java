@@ -20,6 +20,8 @@ public class paint extends JFrame {
 	private JPanel contentPane;
 	public logicaPaint logicaP;
 	public Color colors = Color.BLACK;
+	public String figura_selec = "";
+	private int grosorP, ancho, largo;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -62,6 +64,7 @@ public class paint extends JFrame {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
+//		=== Figuras ===
 		JLabel lblNewLabel = new JLabel("Figuras");
 		lblNewLabel.setFont(new Font("Yu Gothic Light", Font.BOLD, 20));
 		lblNewLabel.setBounds(10, 11, 78, 32);
@@ -96,34 +99,58 @@ public class paint extends JFrame {
 		JButton linea = new JButton("Linea");
 		linea.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				logicaP.figura_selec = "Lapiz";
+				logicaP.figura_selec = "Linea";
 			}
 		});
 		linea.setBounds(27, 142, 99, 23);
 		panel_1.add(linea);
 		
 		JButton pincel = new JButton("Pincel");
+		pincel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				logicaP.figura_selec = "Pincel";
+			}
+		});
 		pincel.setBounds(27, 176, 99, 23);
 		panel_1.add(pincel);
 		
+//		=== Borradores y asi ===
 		JLabel lblOpciones = new JLabel("Opciones");
 		lblOpciones.setFont(new Font("Yu Gothic Light", Font.BOLD, 20));
 		lblOpciones.setBounds(10, 205, 99, 32);
 		panel_1.add(lblOpciones);
 		
 		JButton limpiar = new JButton("Limpiar");
-		limpiar.setBounds(27, 236, 99, 23);
+		limpiar.setBounds(27, 230, 99, 23);
 		limpiar.addActionListener(e ->logicaP.limpiarD());
 		panel_1.add(limpiar);
-				
+		
+		JButton lleno = new JButton("Relleno");
+		lleno.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				logicaP.figura_selec = "Relleno";
+			}
+		});
+		lleno.setBounds(27, 296, 99, 23);
+		panel_1.add(lleno);
+		
+		JButton borrar = new JButton("Borrador");
+		borrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		borrar.setBounds(27, 262, 99, 23);
+		panel_1.add(borrar);
+		
+//		=== Colores ===
 		JLabel lblColores = new JLabel("Colores");
 		lblColores.setFont(new Font("Yu Gothic Light", Font.BOLD, 20));
-		lblColores.setBounds(10, 270, 78, 32);
+		lblColores.setBounds(10, 319, 78, 32);
 		panel_1.add(lblColores);
 		
 		JButton rojo = new JButton("");
 		rojo.setBackground(new Color(255, 0, 0));
-		rojo.setBounds(10, 297, 26, 23);
+		rojo.setBounds(10, 351, 26, 23);
 		rojo.addActionListener(e -> {
 			if (!colors.equals(Color.RED))
 				colors = Color.RED;
@@ -133,7 +160,7 @@ public class paint extends JFrame {
 		
 		JButton verde = new JButton("");
 		verde.setBackground(new Color(128, 255, 0));
-		verde.setBounds(46, 297, 26, 23);
+		verde.setBounds(46, 351, 26, 23);
 		verde.addActionListener(e -> {
 			if (!colors.equals(Color.GREEN))
 				colors = Color.GREEN;
@@ -144,7 +171,7 @@ public class paint extends JFrame {
 		
 		JButton azul = new JButton("");
 		azul.setBackground(new Color(0, 0, 255));
-		azul.setBounds(82, 297, 26, 23);
+		azul.setBounds(83, 351, 26, 23);
 		azul.addActionListener(e -> {
 			if (!colors.equals(Color.BLUE))
 				colors = Color.BLUE;
@@ -154,7 +181,7 @@ public class paint extends JFrame {
 		
 		JButton rosa = new JButton("");
 		rosa.setBackground(new Color(255, 0, 128));
-		rosa.setBounds(118, 297, 26, 23);
+		rosa.setBounds(119, 351, 26, 23);
 		rosa.addActionListener(e -> {
 			if (!colors.equals(Color.PINK))
 				colors = Color.PINK;
@@ -164,7 +191,7 @@ public class paint extends JFrame {
 		
 		JButton negro = new JButton("");
 		negro.setBackground(new Color(0, 0, 0));
-		negro.setBounds(10, 331, 26, 23);
+		negro.setBounds(10, 385, 26, 23);
 		negro.addActionListener(e -> {
 			if (!colors.equals(Color.BLACK))
 				colors = Color.BLACK;
@@ -174,7 +201,7 @@ public class paint extends JFrame {
 		
 		JButton blanco = new JButton("");
 		blanco.setBackground(new Color(255, 255, 255));
-		blanco.setBounds(46, 331, 26, 23);
+		blanco.setBounds(46, 385, 26, 23);
 		blanco.addActionListener(e -> {
 			if (!colors.equals(Color.WHITE))
 				colors = Color.WHITE;
@@ -184,7 +211,7 @@ public class paint extends JFrame {
 		
 		JButton mora = new JButton("");
 		mora.setBackground(new Color(128, 0, 128));
-		mora.setBounds(82, 331, 26, 23);
+		mora.setBounds(82, 385, 26, 23);
 		mora.addActionListener(e -> {
 			if (!colors.equals(Color.MAGENTA))
 				colors = Color.MAGENTA;
@@ -194,32 +221,27 @@ public class paint extends JFrame {
 		
 		JButton gris = new JButton("");
 		gris.setBackground(new Color(128, 128, 128));
-		gris.setBounds(118, 331, 26, 23);
+		gris.setBounds(118, 385, 26, 23);
 		gris.addActionListener(e -> {
 			if (!colors.equals(Color.GRAY))
 				colors = Color.GRAY;
 				logicaP.setColorP(colors);
 		});
-		panel_1.add(gris);
+		panel_1.add(gris); 
 		
-		JSlider slider = new JSlider(1, 10, 3);
-		slider.setBounds(10, 369, 145, 14);
+		JSlider slider = new JSlider(1, 50, 3);
+		slider.setBackground(new Color(223, 233, 223));
+		slider.setBounds(10, 419, 145, 14);
 		panel_1.add(slider);
 		slider.addChangeListener(e -> {
+			if(logicaP.fig != null) {
+				int ntam = slider.getValue() * 50;
+				logicaP.fig.setTam(ancho, largo);
+				logicaP.getPaintPanel().repaint();
+			}
 			logicaP.setGrosorPincel(slider.getValue());
 			logicaP.getPaintPanel().repaint();
 		});
-		
-		JButton guardar = new JButton("Guardar");
-		guardar.setBackground(new Color(80, 160, 160));
-		guardar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		guardar.setBounds(10, 394, 145, 23);
-		panel_1.add(guardar);
-		
-	
 		
 		JPanel panel_2 = logicaP.getPaintPanel();
 		panel_2.setBounds(185, 21, 615, 421);

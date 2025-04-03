@@ -28,8 +28,7 @@ public class logicaPaint implements MouseListener, MouseMotionListener {
 	public String figura_selec = "";
 	public Point inicio = null;
 	public int borrador;
-	
-	
+	public Figura fig = null;
 	
 	private ArrayList<Point> puntos = new ArrayList<Point>();
 	List<List<Point>> listaDePuntos = new ArrayList<>(); 
@@ -93,10 +92,6 @@ public class logicaPaint implements MouseListener, MouseMotionListener {
     	panel_2.repaint();
     }
     
-    public void borrar() {
-    	
-    }
-    
     public void setGrosorPincel(int grosor) {
     	this.grosorP = grosor;
     }
@@ -111,49 +106,52 @@ public class logicaPaint implements MouseListener, MouseMotionListener {
     public void mousePressed(MouseEvent e) {
         puntos = new ArrayList<>();
         puntos.add(e.getPoint());
-    }
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        if (!puntos.isEmpty()) {
-            listaDePuntos.add(new ArrayList<>(puntos));
-            trazosG.add(grosorP);
-            trazoC.add(colorp);
-            puntos.clear();
-        }
-    }
-    @Override
-    public void mouseDragged(MouseEvent e) {
-        puntos.add(e.getPoint());
-        panel_2.repaint();
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
 		int x = e.getX();
 		int y = e.getY();
-		if(figura_selec.isEmpty()) {
-			return;
-		}else if("Cuadrado".equals(figura_selec)) {
+		
+		if("Cuadrado".equals(figura_selec)) {
     		figuras.add(new Figura(x, y, 80, 80, "Cuadrado", colorp, grosorP));
     	}else if ("Circulo".equals(figura_selec)) {
     		figuras.add(new Figura(x, y, 80, 80, "Circulo", colorp, grosorP));
-    	}else if ("linea".equals(figura_selec)) {
+    	}else if ("Linea".equals(figura_selec)) {
     		if(inicio == null) {
     			inicio = new Point(x, y);
     		}else {
     			figuras.add(new Figura(inicio.x, inicio.y, x, y, "Linea", colorp, grosorP));
-    			
+    			inicio = null;
     		}
     	}
     	panel_2.repaint();
     }
+    @Override
+    public void mouseReleased(MouseEvent e) {}
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        puntos.add(e.getPoint());
+        panel_2.repaint();
+        
+        if(fig != null) {
+        	int x = e.getX();
+    		int y = e.getY();
+    		fig.w = x - fig.x;
+    		fig.h = y - fig.y;
+        }
+        
+    	if(!puntos.isEmpty()) {
+    		listaDePuntos.add(new ArrayList<>(puntos));
+    		trazosG.add(grosorP);
+    		trazoC.add(colorp);
+    	}
+    	puntos.clear();
+    }
+    @Override
+    public void mouseClicked(MouseEvent e) {}
     @Override
     public void mouseEntered(MouseEvent e) {}
     @Override
     public void mouseExited(MouseEvent e) {}
     @Override
     public void mouseMoved(MouseEvent e) {}
-
     class PaintPanel extends JPanel {
         public PaintPanel() {
             this.setBackground(Color.white);
@@ -163,6 +161,19 @@ public class logicaPaint implements MouseListener, MouseMotionListener {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             Graphics2D g2 = (Graphics2D) g;
+            
+            if (figura_selec == "Relleno") {
+            	for(Figura f : figuras) {
+                	g2.setStroke(new BasicStroke(f.grosor));
+                	g2.setColor(f.color);
+                	
+                	if("Cuadrado".equals(f.t)) {
+                		g2.fillRect(f.x, f.y , f.w, f.h);
+                	}else if("Circulo".equals(f.t)) {
+                		g2.fillOval(f.x, f.y , f.w, f.h);
+                	}
+                }
+            }
             
             for(Figura f : figuras) {
             	g2.setStroke(new BasicStroke(f.grosor));
@@ -221,6 +232,11 @@ public class logicaPaint implements MouseListener, MouseMotionListener {
     		this.t = t;
     		this.color = color;
     		this.grosor = grosor;
+    	}
+    	
+    	public void setTam(int ancho, int alto) {
+    		this.w = ancho;
+    		this.h = alto;
     	}
     }
 }
