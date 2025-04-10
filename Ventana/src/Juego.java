@@ -29,17 +29,19 @@ import java.awt.event.ActionEvent;
 public class Juego extends JFrame implements KeyListener {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane, panelJ;
-	public int x = 0, y = 0, xStart = 415, yStart = 165; // 415, 165
+	private JPanel contentPane;
+	private PaintPanel panelJ;
+	public int x = 0, y = 0, xStart = 325, yStart = 175;
 	public PaintPanel cdverde = new PaintPanel();
 	
 	private int tiempo = 0;
-	private Timer time;
+	private Timer time, timeDirecion ;
 	private boolean isRunning = false;
 	private JLabel lblTiempo;
 	
 	private int panelWidth = 666, panelHeight = 500;
 	private int mapaWidth = 650, mapaHeight = 350;
+	private int direccionX = 0 , direccionY = 0; 
 	
 	Player player;
 	private ArrayList<Player> obstaculo = new ArrayList<Player>();
@@ -68,40 +70,51 @@ public class Juego extends JFrame implements KeyListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 852, 499);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(0, 64, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 //		=== Panel con el tiempo ===
 		JPanel panelTiempo = new JPanel();
+		panelTiempo.setBackground(new Color(0, 64, 0));
 		panelTiempo.setBounds(0, 0, 836, 43);
 		contentPane.add(panelTiempo);
 		panelTiempo.setLayout(null);
 		
 		lblTiempo = new JLabel("Tiempo: ");
+		lblTiempo.setBackground(new Color(240, 240, 240));
+		lblTiempo.setForeground(new Color(255, 255, 255));
 		lblTiempo.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 20));
-		lblTiempo.setBounds(378, 11, 101, 21);
+		lblTiempo.setBounds(306, 11, 275, 21);
 		panelTiempo.add(lblTiempo);
 		
 //		=== Panel que llevara el juego ===
-		panelJ = new JPanel();
-		panelJ.setBackground(new Color(0, 0, 0));
-		panelJ.setBounds(0, 42, 836, 367);
+		panelJ = new PaintPanel();
+		panelJ.setFocusable(true);
+		panelJ.setBounds(95, 50, mapaWidth, mapaHeight);
 		contentPane.add(panelJ);
 		panelJ.setLayout(null);
-		
-		cdverde = new PaintPanel();
-		panelJ.add(cdverde);
-		cdverde.setLocation(xStart, yStart);
-		
-		player = new Player (xStart, yStart, 20, 20, Color.green);
+		panelJ.addKeyListener(this);
+		panelJ.setOpaque(true);
+	
+		player = new Player (325, 175, 20, 20, Color.green);
 		
 		obstaculo = new ArrayList<Player>();
 		obstaculo.add(new Player(50, 50, 120, 50, Color.red));
 		obstaculo.add(new Player(450, 50, 120, 50, Color.red));
 		
+		timeDirecion = new Timer(10, new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				update();
+			}
+		});
+		timeDirecion.start();
+		
 //		=== Panel con el boton de reinicio ===
 		JPanel panelbtn = new JPanel();
+		panelbtn.setBackground(new Color(0, 64, 0));
 		panelbtn.setBounds(0, 411, 836, 49);
 		contentPane.add(panelbtn);
 		panelbtn.setLayout(null);
@@ -110,14 +123,15 @@ public class Juego extends JFrame implements KeyListener {
 		btnReiniciar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				// posicionar el cuadro en el centro
-				cdverde.setLocation(xStart, yStart);
-				cdverde.repaint();
+				player.x = xStart;
+				player.y = yStart;
 				setFocusable(true);
 				requestFocus(); 
 				
 				tiempo = 0;
 				cronometro();
+				
+				panelJ.repaint();
 			}
 		});
 		btnReiniciar.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 15));
@@ -128,7 +142,7 @@ public class Juego extends JFrame implements KeyListener {
 
 	private void cronometro() {
 		
-		time = new Timer(10, new ActionListener() {
+		time = new Timer(1000, new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -156,77 +170,76 @@ public class Juego extends JFrame implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		
-		int newX = player.x;
-	    int newY = player.y;
+		cronometro();
 	    int avance = 10;
 		
-		System.out.println("INICIO: x=" + x + " y=" + y + " h=" + mapaHeight + " w=" + mapaWidth);
+//		System.out.println("INICIO: x=" + x + " y=" + y + " h=" + mapaHeight + " w=" + mapaWidth);
 		
 		if (e.getExtendedKeyCode() == KeyEvent.VK_UP) {
-			newY -= avance;
+			direccionX = 0;
+			direccionY =- avance;
 		}
 		if (e.getExtendedKeyCode() == KeyEvent.VK_DOWN) {
-			newY += avance;
+			direccionX = 0;
+			direccionY = avance;
 		}
 		if (e.getExtendedKeyCode() == KeyEvent.VK_LEFT) {
-			newX -= avance;
+			direccionX =- avance;
+			direccionY = 0;
 		}
 		if (e.getExtendedKeyCode() == KeyEvent.VK_RIGHT) {
-			newX += avance;
+			direccionX = avance;
+			direccionY = 0;
 		}
+	}
+	
+	private void update() {
 		
+		int newX = player.x + direccionX;
+	    int newY = player.y + direccionY;
+	    
 	    if (newX < 0 || newX + player.w > panelJ.getWidth() ||
-	        newY < 0 || newY + player.h > panelJ.getHeight()) {
-	            return;
-	    }
-		
-		Player p1 = new Player (newX, newY, player.w, player.h, player.c);
-		
-		boolean colision2 = false;
-		
-		for(Player par : obstaculo) {
-			if (p1.colision(par)) {
-				colision2 = true;
-				break;
+		    newY < 0 || newY + player.h > panelJ.getHeight()) {
+            	return;
+		    }
+			
+			Player p1 = new Player (newX, newY, player.w, player.h, player.c);
+			
+			boolean colision2 = false;
+			
+			for(Player par : obstaculo) {
+				if (p1.colision(par)) {
+					colision2 = true;
+					break;
+				}
 			}
-		}
-		
-		if(!colision2) {
-			player.x = newX;
-			player.y = newY;
-		}
+			
+			if(!colision2) {
+				player.x = newX;
+				player.y = newY;
+			}
 
-        panelJ.repaint();
-		
-		// debug
-		System.out.println("FIN: x=" + cdverde.getX() + " y=" + cdverde.getY() + " h=" + mapaHeight + " w=" + mapaWidth);
-		
+	        panelJ.repaint();
 	}
 	
 	@Override
 	public void keyReleased(KeyEvent e) {}
-	
+
     class PaintPanel extends JPanel {
         public PaintPanel() {
             this.setBackground(Color.black);
-    		this.setBounds(0, 0, 836, 367);
-    		setLayout(null);
         }
         
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-            Graphics2D g2 = (Graphics2D) g;
-            
-            int tamanio = 35;
-            
-            g2.setColor(player.c);
-            g2.fillRect(player.x, player.y, player.w, player.h);
+  
+            g.setColor(player.c);
+            g.fillRect(player.x, player.y, player.w, player.h);
             
     		for(Player pared : obstaculo) {
-    			
-    			g2.setColor(pared.c);
-                g2.fillRect(pared.x, pared.y, pared.w, pared.h);
+    			g.setColor(pared.c);
+                g.fillRect(pared.x, pared.y, pared.w, pared.h);
     		}
 
          }
