@@ -7,6 +7,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.text.html.HTMLDocument.Iterator;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -25,13 +27,13 @@ import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-
 public class Juego extends JFrame implements KeyListener {
-
+	
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private PaintPanel panelJ;
-	public int x = 0, y = 0, xStart = 325, yStart = 175;
+	public int x = 0, y = 0, xStart = 0, yStart = 0;
+	public int metaX = 631, metaY = 323;
 	public PaintPanel cdverde = new PaintPanel();
 	
 	private int tiempo = 0;
@@ -45,6 +47,27 @@ public class Juego extends JFrame implements KeyListener {
 	
 	Player player;
 	private ArrayList<Player> obstaculo = new ArrayList<Player>();
+	private int [][] mapaL = {
+			{0,0,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,0,0,0,1,0,0,0,0,0,0},
+			{1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,1,1,0,1,1,1,1,1,0},
+			{1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,0,0,0,1,0,0,0,0,0,0,1},
+			{1,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,0,1},
+			{1,0,1,1,1,1,1,1,1,0,1,0,1,0,1,1,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,1},
+			{1,0,0,0,0,0,0,0,1,0,1,0,1,0,0,0,1,0,1,1,1,1,0,1,0,1,0,1,1,1,0,1,0},
+			{0,1,1,1,1,1,1,0,1,0,1,0,1,1,1,0,1,0,1,1,0,0,0,1,0,1,0,1,1,0,1,1,0},
+			{1,0,0,0,0,0,1,0,1,1,1,0,1,0,0,0,1,0,0,1,0,1,1,1,0,1,0,1,0,0,0,1,0},
+			{1,0,1,1,1,0,1,0,1,0,0,0,1,0,1,1,1,0,1,1,0,0,0,1,0,1,0,1,0,1,0,0,1},
+			{1,0,0,0,1,0,0,0,1,0,1,1,0,0,1,1,1,0,0,0,1,1,0,1,0,1,0,0,0,1,1,0,1},
+			{0,1,1,0,0,0,1,1,0,0,1,1,0,1,0,0,0,0,1,1,0,1,0,1,0,1,0,1,1,1,0,0,1},
+			{0,1,1,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,1,0,0,0,0,1,0,1,0,0,0,1,0,1,0},
+			{0,0,0,0,1,0,1,1,0,0,1,0,0,1,0,0,1,0,1,0,1,1,1,1,0,1,1,1,0,1,0,0,1},
+			{1,0,1,0,1,0,0,0,1,0,0,1,0,1,1,0,0,1,0,0,1,0,0,1,1,1,0,0,0,1,1,0,1},
+			{1,0,1,0,1,0,1,0,0,0,1,1,0,0,0,0,1,0,0,1,0,1,0,0,0,1,0,1,1,1,0,0,1},
+			{1,0,1,0,1,0,1,1,1,1,0,0,1,0,1,1,0,0,1,1,0,1,0,1,0,1,0,0,1,1,0,1,1},
+			{1,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,1,0,0,0,0,1,1,0,0,0},
+			{0,1,1,1,0,1,1,1,1,1,0,1,0,0,0,1,0,1,1,1,1,1,1,0,1,1,1,1,0,0,1,1,1}
+	};
+	private int paredtam = 20;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -58,7 +81,6 @@ public class Juego extends JFrame implements KeyListener {
 			}
 		});
 	}
-
 	/**
 	 * Create the frame.
 	 */
@@ -70,14 +92,14 @@ public class Juego extends JFrame implements KeyListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 852, 499);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(0, 64, 0));
+		contentPane.setBackground(new Color(77, 77, 77));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 //		=== Panel con el tiempo ===
 		JPanel panelTiempo = new JPanel();
-		panelTiempo.setBackground(new Color(0, 64, 0));
+		panelTiempo.setBackground(new Color(77, 77, 77));
 		panelTiempo.setBounds(0, 0, 836, 43);
 		contentPane.add(panelTiempo);
 		panelTiempo.setLayout(null);
@@ -89,6 +111,22 @@ public class Juego extends JFrame implements KeyListener {
 		lblTiempo.setBounds(306, 11, 275, 21);
 		panelTiempo.add(lblTiempo);
 		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBounds(633, 11, 124, 32);
+		panelTiempo.add(panel_3);
+		
+		JPanel panel_1_10 = new JPanel();
+		panel_1_10.setBounds(140, 11, 74, 66);
+		panelTiempo.add(panel_1_10);
+		
+		JPanel panel_1_5 = new JPanel();
+		panel_1_5.setBounds(0, 0, 74, 66);
+		panelTiempo.add(panel_1_5);
+		
+		JPanel panel_1_12_2 = new JPanel();
+		panel_1_12_2.setBounds(762, 0, 74, 66);
+		panelTiempo.add(panel_1_12_2);
+			
 //		=== Panel que llevara el juego ===
 		panelJ = new PaintPanel();
 		panelJ.setFocusable(true);
@@ -98,12 +136,12 @@ public class Juego extends JFrame implements KeyListener {
 		panelJ.addKeyListener(this);
 		panelJ.setOpaque(true);
 	
-		player = new Player (325, 175, 20, 20, Color.green);
-		
 		obstaculo = new ArrayList<Player>();
-		obstaculo.add(new Player(50, 50, 120, 50, Color.red));
-		obstaculo.add(new Player(450, 50, 120, 50, Color.red));
-		
+		player = new Player (0, 0, 15, 15, Color.black);
+		mapaLaberinto();
+//		obstaculo.add(new Player(0, 25, 150, 5, Color.blue));
+//		obstaculo.add(new Player(150, 25, 5, 150, Color.blue));
+//		obstaculo.add(new Player(50, 170, 5, 150, Color.blue));
 		timeDirecion = new Timer(10, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -114,7 +152,7 @@ public class Juego extends JFrame implements KeyListener {
 		
 //		=== Panel con el boton de reinicio ===
 		JPanel panelbtn = new JPanel();
-		panelbtn.setBackground(new Color(0, 64, 0));
+		panelbtn.setBackground(new Color(77, 77, 77));
 		panelbtn.setBounds(0, 411, 836, 49);
 		contentPane.add(panelbtn);
 		panelbtn.setLayout(null);
@@ -130,6 +168,8 @@ public class Juego extends JFrame implements KeyListener {
 				
 				tiempo = 0;
 				cronometro();
+				direccionX = 0;
+				direccionY = 0;
 				
 				panelJ.repaint();
 			}
@@ -137,16 +177,97 @@ public class Juego extends JFrame implements KeyListener {
 		btnReiniciar.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 15));
 		btnReiniciar.setBounds(353, 11, 133, 23);
 		panelbtn.add(btnReiniciar);
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setBounds(10, 28, 94, 10);
+		panelbtn.add(panel_4);
+		
+		JPanel panel_5 = new JPanel();
+		panel_5.setBounds(563, 28, 157, 10);
+		panelbtn.add(panel_5);
+		
+		JPanel panel_1_13 = new JPanel();
+		panel_1_13.setBounds(269, -17, 74, 66);
+		panelbtn.add(panel_1_13);
+		
+		JPanel panel_1_12_1 = new JPanel();
+		panel_1_12_1.setBounds(762, -17, 74, 66);
+		panelbtn.add(panel_1_12_1);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(62, 42, 74, 66);
+		contentPane.add(panel_1);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBounds(0, 185, 198, 86);
+		contentPane.add(panel_2);
+		
+		JPanel panel_2_1 = new JPanel();
+		panel_2_1.setBounds(638, 318, 198, 86);
+		contentPane.add(panel_2_1);
+		
+		JPanel panel_2_2 = new JPanel();
+		panel_2_2.setBounds(62, 374, 198, 43);
+		contentPane.add(panel_2_2);
+		
+		JPanel panel_1_1 = new JPanel();
+		panel_1_1.setBounds(762, 86, 74, 66);
+		contentPane.add(panel_1_1);
+		
+		JPanel panel_1_2 = new JPanel();
+		panel_1_2.setBounds(684, 251, 74, 66);
+		contentPane.add(panel_1_2);
+		
+		JPanel panel_1_3 = new JPanel();
+		panel_1_3.setBounds(762, 174, 74, 66);
+		contentPane.add(panel_1_3);
+		
+		JPanel panel_1_4 = new JPanel();
+		panel_1_4.setBounds(684, 131, 74, 66);
+		contentPane.add(panel_1_4);
+		
+		JPanel panel_1_6 = new JPanel();
+		panel_1_6.setBounds(0, 119, 74, 66);
+		contentPane.add(panel_1_6);
+		
+		JPanel panel_1_7 = new JPanel();
+		panel_1_7.setBounds(426, 42, 74, 66);
+		contentPane.add(panel_1_7);
+		
+		JPanel panel_1_9 = new JPanel();
+		panel_1_9.setBounds(219, 42, 74, 66);
+		contentPane.add(panel_1_9);
+		
+		JPanel panel_1_11 = new JPanel();
+		panel_1_11.setBounds(0, 297, 74, 66);
+		contentPane.add(panel_1_11);
+		
+		JPanel panel_1_12 = new JPanel();
+		panel_1_12.setBounds(484, 344, 74, 66);
+		contentPane.add(panel_1_12);
+		
+		JPanel panel_1_8 = new JPanel();
+		panel_1_8.setBounds(657, 54, 74, 66);
+		contentPane.add(panel_1_8);
 	}
+	
 //		=== ACCIONES DEL JUEGO ===
+	public void mapaLaberinto() {
+	    for (int i = 0; i < mapaL.length; i++) { // i == fila
+	        for (int j = 0; j < mapaL[i].length; j++) { // j == columnas
+	            if (mapaL[i][j] == 1) {
+	                int x = j * paredtam;
+	                int y = i * paredtam;
+	                obstaculo.add(new Player(x, y, paredtam, paredtam, Color.blue));
+	            }
+	        }
+	    }
+	}
 
 	private void cronometro() {
-		
 		time = new Timer(1000, new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				tiempo ++;
 				
 				int hora = tiempo / 3600;
@@ -154,14 +275,11 @@ public class Juego extends JFrame implements KeyListener {
 				int seg = tiempo % 60;
 				
 				String tf = String.format("%02d:%02d:%02d", hora, min, seg);
-				lblTiempo.setText("Tiempo: " + tf);
-				
+				lblTiempo.setText("Tiempo: " + tf);	
 			}
 		}); 
-		
 		time.start();
 		isRunning = true;
-		
 	}
 	
 	@Override
@@ -169,9 +287,8 @@ public class Juego extends JFrame implements KeyListener {
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
-		
 		cronometro();
-	    int avance = 10;
+	    int avance = 5;
 		
 //		System.out.println("INICIO: x=" + x + " y=" + y + " h=" + mapaHeight + " w=" + mapaWidth);
 		
@@ -191,6 +308,7 @@ public class Juego extends JFrame implements KeyListener {
 			direccionX = avance;
 			direccionY = 0;
 		}
+//		System.out.println("FIN: x=" + x + " y=" + y + " h=" + mapaHeight + " w=" + mapaWidth);
 	}
 	
 	private void update() {
@@ -213,10 +331,14 @@ public class Juego extends JFrame implements KeyListener {
 					break;
 				}
 			}
-			
 			if(!colision2) {
 				player.x = newX;
 				player.y = newY;
+			}
+			
+			if (player.x >= metaX && player.y >= metaY) {
+			    timeDirecion.stop();
+			    JOptionPane.showMessageDialog(null, "¡Ganaste!");
 			}
 
 	        panelJ.repaint();
@@ -227,7 +349,7 @@ public class Juego extends JFrame implements KeyListener {
 
     class PaintPanel extends JPanel {
         public PaintPanel() {
-            this.setBackground(Color.black);
+            this.setBackground(Color.white);
         }
         
         @Override
