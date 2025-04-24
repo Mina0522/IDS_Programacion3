@@ -19,17 +19,18 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import Controlador.Conexion;
+
 public class Login extends JFrame{
 
 	private JFrame frame;
- 	private JTextField textField;
- 	private JPasswordField passwordField;
-	
- 	public Login() {
- 		
- 	}
- 	
+ 	private JTextField text;
+ 	private JPasswordField pass;
+ 	public Conexion functions;
+
 	public void login() {
+		
+		this.functions = functions;
 		
 		frame = new JFrame();
  		frame.setBounds(20, 10, 660, 600);
@@ -64,11 +65,11 @@ public class Login extends JFrame{
 		etq3.setBounds(30, 200, 100, 30);
 		panelLogin.add(etq3);
 //		
-		JTextField text = new JTextField();
+		text = new JTextField();
 		text.setBounds(130, 130, 180, 25);
 		panelLogin.add(text);
 
-		JPasswordField pass = new JPasswordField();
+		pass = new JPasswordField();
 		pass.setBounds(130, 200, 180, 25);
 		pass.setEchoChar('*');
 		panelLogin.add(pass);
@@ -83,21 +84,23 @@ public class Login extends JFrame{
 		panelLogin.add(boton);
 		boton.addActionListener(e -> registro());
 		
-//		boton.addActionListener(new ActionListener() {
-//
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				System.out.println("hola >:I");
-//				
-//				if(text.getText().equals("Romi") || pass.getPassword().equals("aguacate")) {
-//					text.setBorder(BorderFactory.createLineBorder(Color.green));
-//					System.out.println("Bienvenido!!");
-//				}else {
-//					text.setBorder(BorderFactory.createLineBorder(Color.red));
-//					pass.setBorder(BorderFactory.createLineBorder(Color.red));
-//				}
-//				
-//			}});
+		boton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("hola >:I");
+				String u = getusuario();
+				String p = getpass();
+				
+				if(text.getText().equals(u) || pass.getPassword().equals(p)) {
+					text.setBorder(BorderFactory.createLineBorder(Color.green));
+					System.out.println("Bienvenido!!");
+				}else {
+					text.setBorder(BorderFactory.createLineBorder(Color.red));
+					pass.setBorder(BorderFactory.createLineBorder(Color.red));
+				}
+				
+			}});
 
 		frame.add(panelLogin);
  		frame.repaint();
@@ -171,25 +174,37 @@ public class Login extends JFrame{
 		panelLogin.add(boton);
 		boton.addActionListener(e -> registro());
 		
-//		boton.addActionListener(new ActionListener() {
-//
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				System.out.println("hola >:I");
-//				
-//				if(text.getText().equals("Romi") || pass.getPassword().equals("aguacate")) {
-//					text.setBorder(BorderFactory.createLineBorder(Color.green));
-//					System.out.println("Bienvenido!!");
-//				}else {
-//					text.setBorder(BorderFactory.createLineBorder(Color.red));
-//					pass.setBorder(BorderFactory.createLineBorder(Color.red));
-//				}
-//				
-//			}});
+		boton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("hola >:I");
+				String u = getusuario();
+				String p = getpass();
+				
+				if(text.getText().equals(u) || pass.getPassword().equals(p)) {
+					text.setBorder(BorderFactory.createLineBorder(Color.green));
+					System.out.println("Bienvenido!!");
+				}else {
+					text.setBorder(BorderFactory.createLineBorder(Color.red));
+					pass.setBorder(BorderFactory.createLineBorder(Color.red));
+				}
+				
+			}});
 
 		frame.add(panelLogin);
  		frame.repaint();
  		panelLogin.repaint();		
 	}
 
+	public String getusuario() {
+
+		return text.getText();
+	}
+
+	public String getpass() {
+
+		return new String(pass.getPassword());
+	}
+	
 }

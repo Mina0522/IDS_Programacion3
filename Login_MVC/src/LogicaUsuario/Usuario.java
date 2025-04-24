@@ -4,12 +4,8 @@ public class Usuario {
 	
 	String c = "romi";
 	String pass = "agua";
-	
-	public Usuario() {
-		
-	}
-	
-	public boolean verificar() {
+
+	public boolean logicaU(String c, String pass) {
 		
 		if (c.equals(c)) {
 			if (pass.equals(pass)) {
@@ -21,5 +17,6 @@ public class Usuario {
 		}
 		return false;	
 	}
+
 
 }
