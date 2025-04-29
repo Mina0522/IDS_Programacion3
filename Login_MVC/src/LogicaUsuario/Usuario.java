@@ -1,22 +1,45 @@
 package LogicaUsuario;
 
-public class Usuario {
-	
-	String c = "romi";
-	String pass = "agua";
+import java.io.BufferedReader;
+import java.io.FileReader;
 
-	public boolean logicaU(String c, String pass) {
+public class Usuario {
+
+	public boolean logicaU(String user, String pass) {
 		
-		if (c.equals(c)) {
-			if (pass.equals(pass)) {
-				return true;
+		FileReader folder;
+		BufferedReader leer;
+		
+		try {
+			
+			folder = new FileReader ("C:\\Users\\gennd\\git\\IDS_Programacion3\\Login_MVC\\contra\\password.txt");
+			if (folder.ready()) {
+				
+				leer = new BufferedReader (folder);
+				String cadena;
+				
+				while ((cadena = leer.readLine()) != null) {
+					
+					String [] userRead = cadena.split(",");
+					
+					String userC = userRead [0];
+					String userPass = userRead [1];
+					
+					if (userC.equals(user) && userPass.equals(pass)) {
+						
+						leer.close();
+						return true;
+					}
+				}
+				leer.close();
+			} else {
+				System.out.println("Archivo no reconocido.");
+
 			}
 			
-		}else {
-			return false;
+		} catch(Exception e) {
+			System.out.println("Archivo no encotrado. "+e.getMessage());
 		}
-		return false;	
+		return false;
 	}
-
-
 }

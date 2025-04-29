@@ -82,22 +82,28 @@ public class Login extends JFrame{
 		JButton boton = new JButton("Ingresar");
 		boton.setBounds(150, 330, 120, 25);
 		panelLogin.add(boton);
-		boton.addActionListener(e -> registro());
-		
 		boton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("hola >:I");
-				String u = getusuario();
+				
+				LogicaUsuario.Usuario user = new LogicaUsuario.Usuario();
+				
+				String u = getusuario();	
 				String p = getpass();
 				
-				if(text.getText().equals(u) || pass.getPassword().equals(p)) {
+				if(user.logicaU(u, p)) {
 					text.setBorder(BorderFactory.createLineBorder(Color.green));
+					pass.setBorder(BorderFactory.createLineBorder(Color.green));
 					System.out.println("Bienvenido!!");
+					
+					frame.dispose();
+					registro();
 				}else {
 					text.setBorder(BorderFactory.createLineBorder(Color.red));
 					pass.setBorder(BorderFactory.createLineBorder(Color.red));
+					System.out.println("Datos incorrectos.");
 				}
 				
 			}});
@@ -182,7 +188,7 @@ public class Login extends JFrame{
 				String u = getusuario();
 				String p = getpass();
 				
-				if(text.getText().equals(u) || pass.getPassword().equals(p)) {
+				if(text.getText().equals(u) && pass.getPassword().equals(p)) {
 					text.setBorder(BorderFactory.createLineBorder(Color.green));
 					System.out.println("Bienvenido!!");
 				}else {
