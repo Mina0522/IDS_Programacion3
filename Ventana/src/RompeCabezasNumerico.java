@@ -62,7 +62,7 @@ public class RompeCabezasNumerico extends JFrame {
 		des.add(15);
 		des.add(0);
 		
-//		Collections.shuffle(des);
+		Collections.shuffle(des);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 675, 598);
@@ -398,7 +398,7 @@ public class RompeCabezasNumerico extends JFrame {
 		des.add(15);
 		des.add(0);
 
-//		Collections.shuffle(des);
+		Collections.shuffle(des);
 		
 		btn1.setText(des.get(1) + "");
 		btn2.setText(des.get(2) + "");

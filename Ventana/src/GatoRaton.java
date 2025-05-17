@@ -72,11 +72,11 @@ public class GatoRaton extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (btn1.getText().equals("")) {
 					if (turno) {
-						btn1.setText("X");
+						btn1.setText("GATO");
 						btn1.setIcon(imgGatob);
 						btn1.setEnabled(true);
 					} else {
-						btn1.setText("O");
+						btn1.setText("RATON");
 						btn1.setIcon(imgRaton);
 						btn1.setEnabled(true);
 					}
@@ -95,11 +95,11 @@ public class GatoRaton extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (btn2.getText().equals("")) {
 					if (turno) {
-						btn2.setText("X");
+						btn2.setText("GATO");
 						btn2.setIcon(imgGatob);
 						btn2.setEnabled(true);
 					} else {
-						btn2.setText("O");
+						btn2.setText("RATON");
 						btn2.setIcon(imgRaton);
 						btn2.setEnabled(true);
 					}
@@ -117,11 +117,11 @@ public class GatoRaton extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (btn3.getText().equals("")) {
 					if (turno) {
-						btn3.setText("X");
+						btn3.setText("GATO");
 						btn3.setIcon(imgGatob);
 						btn3.setEnabled(true);
 					} else {
-						btn3.setText("O");
+						btn3.setText("RATON");
 						btn3.setIcon(imgRaton);
 						btn3.setEnabled(true);
 					}
@@ -139,11 +139,11 @@ public class GatoRaton extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (btn4.getText().equals("")) {
 					if (turno) {
-						btn4.setText("X");
+						btn4.setText("GATO");
 						btn4.setIcon(imgGatob);
 						btn4.setEnabled(true);
 					} else {
-						btn4.setText("O");
+						btn4.setText("RATON");
 						btn4.setIcon(imgRaton);
 						btn4.setEnabled(true);
 					}
@@ -162,11 +162,11 @@ public class GatoRaton extends JFrame {
 
 				if (btn5.getText().equals("")) {
 					if (turno) {
-						btn5.setText("X");
+						btn5.setText("GATO");
 						btn5.setIcon(imgGatob);
 						btn5.setEnabled(true);
 					} else {
-						btn5.setText("O");
+						btn5.setText("RATON");
 						btn5.setIcon(imgRaton);
 						btn5.setEnabled(true);
 					}
@@ -184,11 +184,11 @@ public class GatoRaton extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (btn6.getText().equals("")) {
 					if (turno) {
-						btn6.setText("X");
+						btn6.setText("GATO");
 						btn6.setIcon(imgGatob);
 						btn6.setEnabled(true);
 					} else {
-						btn6.setText("O");
+						btn6.setText("RATON");
 						btn6.setIcon(imgRaton);
 						btn6.setEnabled(true);
 					}
@@ -206,11 +206,11 @@ public class GatoRaton extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (btn7.getText().equals("")) {
 					if (turno) {
-						btn7.setText("X");
+						btn7.setText("GATO");
 						btn7.setIcon(imgGatob);
 						btn7.setEnabled(true);
 					} else {
-						btn7.setText("O");
+						btn7.setText("RATON");
 						btn7.setIcon(imgRaton);
 						btn7.setEnabled(true);
 					}
@@ -228,11 +228,11 @@ public class GatoRaton extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (btn8.getText().equals("")) {
 					if (turno) {
-						btn8.setText("X");
+						btn8.setText("GATO");
 						btn8.setIcon(imgGatob);
 						btn8.setEnabled(true);
 					} else {
-						btn8.setText("O");
+						btn8.setText("RATON");
 						btn8.setIcon(imgRaton);
 						btn8.setEnabled(true);
 					}
@@ -250,11 +250,11 @@ public class GatoRaton extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (btn9.getText().equals("")) {
 					if (turno) {
-						btn9.setText("X");
+						btn9.setText("GATO");
 						btn9.setIcon(imgGatob);
 						btn9.setEnabled(true);
 					} else {
-						btn9.setText("O");
+						btn9.setText("RATON");
 						btn9.setIcon(imgRaton);
 						btn9.setEnabled(true);
 					}
@@ -406,12 +406,12 @@ public class GatoRaton extends JFrame {
 	
 	private void puntos (String ganador) {
 		
-		if(ganador.equals("X")) {
+		if(ganador.equals("GATO")) {
 			puntoX ++; 
-		}else if(ganador.equals("O")) {
+		}else if(ganador.equals("RATON")) {
 			puntoY ++;
 		}
-		contGato.setText("X: " + puntoX);
-		contRaton.setText("O: " + puntoY);
+		contGato.setText("Gato: " + puntoX);
+		contRaton.setText("Raton: " + puntoY);
 	}
 }

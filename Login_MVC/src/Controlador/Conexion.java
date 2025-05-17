@@ -3,29 +3,29 @@ package Controlador;
 import VistaLogin.Login;
 import LogicaUsuario.Usuario;
 
-public class Conexion {
+	public class Conexion{
 	
-	public Usuario model;
-	public Login view;
-	
-	public Conexion() {
-		
-		this.model = model;
-		this.view = new Login();
-		this.view.setVisible(true);
-	}
+    private Usuario model;
+    private Login view;
 
-	public void login() {
- 		
- 		view.login();
- 	}
-	
-    public boolean verificar(String usuario,String pass) {
-     	String user = view.getusuario();
-     	String password = view.getpass();
-     	
-     	return model.logicaU(user, password);
+    public Conexion(Login view, Usuario model) {
+        this.view = view;
+        this.model = model;
+    }
+  
+    public void iniciar() {
+        view.setVisible(true);
+    }
 
-	
+    public boolean verificar() {
+        String user = view.getusuario();
+        String pass = view.getpass();
+        return model.logicaU(user, pass);
+    }
+
+    public boolean registrarNuevoUsuario() {
+        String user = view.getusuario();
+        String pass = view.getpass();
+        return model.nuevacuenta(user, pass);
     }
 }

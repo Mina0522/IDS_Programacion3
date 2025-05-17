@@ -291,7 +291,7 @@ public class Login extends JFrame{
 					boolean guardado_correctamente = log.nuevacuenta(
 							nombre, apellido, empresa,
 							area, cargo, user, correo,
-							contrasenia,confirmar_contrasenia
+							contrasenia,confirmar_contrasenia, confirmar_contrasenia
 							);
 					if(guardado_correctamente) {
 						JOptionPane.showMessageDialog(null, "Registro exitoso!");
